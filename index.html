@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js30-D2(CLOCK)</title>
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+    <style>
+        html {
+    background-image: url(milkysky.jpg);
+    background-size:cover;
+    background-repeat: no-repeat;
+    font-family: 'Amatic SC', cursive;
+}
+
+body {
+    margin: 0;
+    font-size: 2rem;
+    display:flex;
+    flex:1;
+    min-height: 100vh;
+
+}
+
+.title {
+    color: white;
+    font-size: 70px;
+    width:50%;
+    display: inline-block;
+    word-break: break-all;
+    position: relative;
+    padding-left: 10%;
+    padding-top: 8%;
+    
+}
+
+
+.clock {
+    width: 10rem;
+    height: 10rem;
+    border:8px solid #FCFCF7;
+    border-radius:50%;
+    margin:50px auto;
+    padding:2rem;
+    box-shadow:
+    0 0 0 4px rgba(0,0,0,0.1),
+    inset 0 0 0 3px #e0e0e0,
+    inset 0 0 10px black,
+    0 0 10px rgba(0,0,0,0.2);
+    position: absolute;
+    top: 25%;
+    left: 45%;  
+    background: linear-gradient(to bottom,black 0%,transparent 50%,black);
+
+
+}
+
+.clock-face {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform: translateY(-3px); 
+    
+}
+
+.button {
+    position: absolute;
+    top:49%;
+    left:47.5%;
+    background: #1C1F33;
+    border-radius:50%;
+    width: .8rem;
+    height: .8rem; 
+    z-index:1;
+    
+}
+
+
+.second-hand {
+    width:50%;
+    height:2px;
+    border-radius:10%;
+    background: #e0e0e0;
+    position: absolute;
+    top: 50%;
+    transform: rotate(90deg);
+    transform-origin: 100%;
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    
+}
+
+.hand {
+    width:68px;
+    height:5px;
+    border-radius:10%;
+    position: absolute;
+    top:50%;
+    left:9.5%;
+    transform-origin: 100%;
+    background-color: #1C1F33;
+    transition: all 0.05s;
+
+}
+
+.min-hand {
+    width:50%;
+    height:5px;
+    border-radius:10%;
+    background: #1C1F33;
+    position: absolute;
+    top: 50%;
+    transform: rotate(90deg);
+    transform-origin: 100%;
+    transition: all 0.05s;
+    
+}
+
+
+
+    </style>
+</head>
+<body>
+    <div class="title">JAVASCRIPT30-Day2</div>
+    
+    <div class="clock">
+        <div class="clock-face">
+           <div class="button"></div>
+           <div class="second-hand"></div>  
+           <div class="hand"></div>
+           <div class="min-hand"></div>
+             
+        </div>
+    </div>
+    
+<script>
+    const secondhand = document.querySelector('.second-hand');
+    const minhand = document.querySelector('.min-hand');
+    const hourhand = document.querySelector('.hand');
+    
+    function setDate(){
+        
+    const now = new Date(); 
+    
+    const seconds = now.getSeconds();
+    const secondsDegrees = (seconds / 60)*360+90;
+    secondhand. style.transform = `rotate(${secondsDegrees}deg)`;
+    
+    const min = now.getMinutes();
+    const minDegrees = (min / 60)*360+90;
+    minhand. style.transform = `rotate(${minDegrees}deg)`;
+        
+    const hour = now.getHours();
+    const hourDegrees = (hour / 12)*360+90;
+    hourhand. style.transform = `rotate(${hourDegrees}deg)`;
+        
+    }
+    
+    
+    
+    setInterval(setDate, 1000);
+    </script>
+</body>
+</html>
